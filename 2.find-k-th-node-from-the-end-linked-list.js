@@ -58,4 +58,4 @@ linkedList.insert(1);
 linkedList.insert(2);
 linkedList.insert(3);
 
-console.log("element", linkedList.findFromEnd(2));
+console.log("element", linkedList.findFromEnd(1));
