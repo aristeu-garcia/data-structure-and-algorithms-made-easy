@@ -39,13 +39,20 @@ class DoublyLinkedList {
       currentNode = currentNode.next;
     }
   }
-  checkLoopFloyd() {
+  checkLoopFloydWithLength() {
     let slowNode = this.head;
     let fastNode = this.head;
     while (fastNode && fastNode.next) {
       slowNode = slowNode.next;
       fastNode = fastNode.next.next;
+      let size = 1;
       if (slowNode === fastNode) {
+        fastNode = fastNode.next;
+        while (slowNode !== fastNode) {
+          fastNode = fastNode.next
+          size++;
+        }
+        console.log(`The size of loop is ${size}`);
         return true;
       }
     }
@@ -58,6 +65,8 @@ list.append(1);
 list.append(2);
 list.append(3);
 list.append(4);
+list.append(5);
+
 list.print();
 list.makeCyclic();
-console.log(list.checkLoopFloyd());
+console.log(list.checkLoopFloydWithLength());
