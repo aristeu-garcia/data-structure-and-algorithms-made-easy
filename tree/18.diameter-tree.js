@@ -56,25 +56,38 @@ const tree2 = {
   },
 };
 
+const tree3 = {
+  value: 1,
+  left: {
+    value: 2,
+    left: {
+      value: 4,
+    },
+    right: {
+      value: 5,
+    },
+  },
+  right: {
+    value: 3,
+  },
+};
+let diameter = 0;
 const findDiameter = (tree) => {
   let currentTree = tree;
 
-  const result1 = (currentTree?.left && calculateHeight(currentTree.left)) || 0;
-  const result2 =
-    (currentTree?.right && calculateHeight(currentTree.right)) || 0;
+  const result = calculateHeight(currentTree)
+  // const resultRight = currentTree?.right && calculateHeight(currentTree.right)
+  // diameter = Math.max(diameter, resultLeft + resultRight);
 
-  console.log("aaaaaa", result1 + result2);
+  console.log("aaaaaa", diameter);
 };
-
-//TODO : Aplicar a soma em todos os nós	⚠️ Falta percorrer
-// todo: Manter o maior valor global (diâmetro real)	⚠️ Falta implementar
 
 const calculateHeight = (tree) => {
   console.log(tree.value);
-  const result = tree?.left && calculateHeight(tree?.left) + 1;
-  const resultRight = tree?.right && calculateHeight(tree?.right) + 1;
-
-  return Math.max(result, resultRight) || 0;
+  const result = (tree?.left && calculateHeight(tree?.left)) || 0;
+  const resultRight = (tree?.right && calculateHeight(tree?.right)) || 0;
+  diameter = Math.max(diameter, result + resultRight)
+  return Math.max(result, resultRight) + 1;
 };
 
-findDiameter(tree2);
+findDiameter(tree3);
