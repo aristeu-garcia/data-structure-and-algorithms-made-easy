@@ -11,18 +11,20 @@ var validPath = function (n, edges, source, destination) {
   // source is the step 0
   // destination is the goal
 
-  // começar a percorrer os paths
-  //{'key': [0,1,2]}
   const neighbors = {};
+
   for (let i = 0; i < edges.length; i = i + 1) {
     // lista de caminhos
-    for (let j = 0; j < edges[i].length; j = j + 1) {
-      // lista do primeiro caminho
-      const current = edges[i][j];
-      console.log(current)
-    }
+    const [x, v] = edges[i];
+
+    if (!neighbors[x]) neighbors[x] = [];
+    if (!neighbors[v]) neighbors[v] = [];
+
+    neighbors[x].push(v);
+    neighbors[v].push(x);
   }
-//   console.log(neighbors);
+
+  console.log(neighbors);
 };
 
 validPath(
@@ -33,5 +35,5 @@ validPath(
     [2, 0],
   ],
   0,
-  2,
+  2
 );
